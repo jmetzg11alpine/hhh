@@ -3,6 +3,7 @@ package main
 import (
 	"strings"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
 	"hhh/backend"
@@ -10,6 +11,12 @@ import (
 
 func main() {
 	r := gin.Default()
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:5173"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
+		AllowHeaders:     []string{"Content-Type"},
+		AllowCredentials: true,
+	}))
 
 	r.Static("/_app", "./frontend/build/_app")
 	r.Static("/assets", "./frontend/build/assets")
@@ -24,13 +31,6 @@ func main() {
 	})
 
 	backend.RegisterRoutes(r)
-
-	// api := r.Group("/api")
-	// {
-	// 	api.GET("/hello", func(c *gin.Context) {
-	// 		c.JSON(http.StatusOK, gin.H{"message": "Hello from backend!"})
-	// 	})
-	// }
 
 	r.Run(":8080")
 }

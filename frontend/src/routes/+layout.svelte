@@ -15,7 +15,7 @@
 		<!-- App Bar -->
 		<AppBar>
 			<svelte:fragment slot="lead">
-				<strong class="text-xl uppercase">Skeleton</strong>
+				<strong class="text-xl uppercase">Helen's Hellacious Hens</strong>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<a

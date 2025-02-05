@@ -1,8 +1,9 @@
 package backend
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func RegisterRoutes(r *gin.Engine) {
@@ -13,5 +14,5 @@ func RegisterRoutes(r *gin.Engine) {
 }
 
 func HelloHandler(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"message": "Hello from backend!"})
+	c.JSON(http.StatusOK, gin.H{"message": "Hello from backend! you donkey"})
 }
