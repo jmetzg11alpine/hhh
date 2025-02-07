@@ -1,36 +1,18 @@
 package main
 
 import (
-	"strings"
-
-	"github.com/gin-contrib/cors"
-	"github.com/gin-gonic/gin"
-
-	"hhh/backend"
+	"fmt"
+	"net/http"
 )
 
 func main() {
-	r := gin.Default()
-	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:5173"},
-		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
-		AllowHeaders:     []string{"Content-Type"},
-		AllowCredentials: true,
-	}))
+	fs := http.FileServer(http.Dir("frontend"))
+	http.Handle("/frontend/", http.StripPrefix("/frontend/", fs))
 
-	r.Static("/_app", "./frontend/build/_app")
-	r.Static("/assets", "./frontend/build/assets")
-	r.StaticFile("/favicon.png", "./frontend/build/favicon.png")
-	r.Use(func(c *gin.Context) {
-		if strings.HasPrefix(c.Request.URL.Path, "/api") {
-			c.Next()
-			return
-		}
-
-		c.File("./frontend/build/index.html")
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "frontend/index.html")
 	})
 
-	backend.RegisterRoutes(r)
-
-	r.Run(":8080")
+	fmt.Println("Server running on http://localhost:8080")
+	http.ListenAndServe(":8080", nil)
 }
