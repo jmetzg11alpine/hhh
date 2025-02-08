@@ -1,4 +1,4 @@
-import { saveNewItem } from '../api/admin';
+import { saveNewItem } from '/frontend/api/admin.js';
 
 class NewItem extends HTMLElement {
   constructor() {
@@ -11,6 +11,11 @@ class NewItem extends HTMLElement {
       this.shadowRoot.innerHTML = `
             <link rel="stylesheet" href="/styles/components/new-item.css">
             <div class="card">
+                <h2>Add New Item</h2>
+                <form id="new-item-form">
+                    <label for="title">Title:</label>
+                    <input type="text
+                </form>
                 <div>Some cool text</div>
                 <button id="save-button">Save</button>
             </div>
