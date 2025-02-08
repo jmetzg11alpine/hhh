@@ -1,20 +1,18 @@
+----------------------- database ---------------------
+sqlite3 database.db "SELECT * FROM items;"
+
+sqlite3 database.db
+.mode column
+.headers on
+SELECT * FROM items;
 
 
-
-
+----------------------- ideas ---------------------
 add unit testing
 end-to-end testing
  CI/CD
 
-
-
-
------------------- for production -----------------------------
-npm run build
-go run main.go
-
 ----------------------- for development ---------------------
-npm run dev
 air -c .air.toml
 
 

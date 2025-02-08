@@ -7,6 +7,9 @@ import (
 )
 
 func main() {
+	backend.InitDB()
+	defer backend.DB.Close()
+
 	fs := http.FileServer(http.Dir("frontend"))
 	http.Handle("/frontend/", http.StripPrefix("/frontend/", fs))
 

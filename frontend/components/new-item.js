@@ -9,26 +9,45 @@ class NewItem extends HTMLElement {
   connectedCallback() {
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
-            <link rel="stylesheet" href="/styles/components/new-item.css">
+            <style>
+                @import url('/frontend/styles/components/new-item.css');
+            </style>
             <div class="card">
                 <h2>Add New Item</h2>
                 <form id="new-item-form">
                     <label for="title">Title:</label>
-                    <input type="text
+                    <input type="text" id="title" required>
+
+                    <label for="description">Description:</label>
+                    <textarea id="description" required></textarea>
+
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+
+                    <button type="submit">Save</button>
                 </form>
-                <div>Some cool text</div>
-                <button id="save-button">Save</button>
+                <p id="message">Item Saved!</p>
             </div>
         `;
 
-      const button = this.shadowRoot.getElementById('save-button');
-      if (button) {
-        button.addEventListener('click', () => this.handleSave());
-      }
+      const form = this.shadowRoot.getElementById('new-item-form');
+      form.addEventListener('submit', (event) => this.handleSave(event));
     }
   }
-  handleSave() {
-    saveNewItem();
+  handleSave(event) {
+    event.preventDefault();
+    const title = this.shadowRoot.getElementById('title').value;
+    const description = this.shadowRoot.getElementById('description').value;
+    const date = this.shadowRoot.getElementById('date').value;
+    const newItem = { title, description, date };
+
+    saveNewItem(newItem)
+      .then(() => {
+        this.shadowRoot.getElementById('message').style.display = 'block';
+      })
+      .catch((error) => {
+        console.error('Error saving item:', error);
+      });
   }
 }
 

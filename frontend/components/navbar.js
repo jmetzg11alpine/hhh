@@ -7,10 +7,14 @@ class Navbar extends HTMLElement {
   connectedCallback() {
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
-        <link rel="stylesheet" href="/frontend/styles/components/navbar.css">
+        <style>
+          @import url('/frontend/styles/components/navbar.css');
+        </style>
         <nav>
           <a href="/">Home</a>
           <a href="/info">Info</a>
+          <a href="/calendar">Calendar</a>
+          <a href="/contact">Contact</a>
         </nav>
       `;
     }

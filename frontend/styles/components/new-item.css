@@ -1,4 +1,7 @@
-button {
-  background-color: red;
-  color: white;
+#message {
+  color: green;
+  display: none;
+}
+
+.card {
 }
