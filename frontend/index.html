@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+    <!-- global -->
     <script type="module" src="/frontend/router.js"></script>
     <script type="module" src="/frontend/components/navbar.js"></script>
-    <script type="module" src="/frontend/components/new-item.js"></script>
+    <script type="module" src="/frontend/components/pop-up.js"></script>
     <link rel="stylesheet" href="/frontend/styles/global.css" />
+    <!-- admin -->
+    <script type="module" src="/frontend/components/new-item.js"></script>
+    <script type="module" src="/frontend/components/admin-list.js"></script>
+    <!-- customer -->
+    <script type="module" src="/frontend/components/list-items.js" /></script>
   </head>
   <body>
     <navbar-component></navbar-component>
+    <pop-up></pop-up>
     <div id="app-content"></div>
   </body>
 </html>

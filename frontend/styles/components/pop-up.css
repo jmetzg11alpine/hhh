@@ -1,0 +1,18 @@
+.popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #d3d3d3;
+  color: green;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 36px;
+  display: none;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.show {
+  display: block;
+  opacity: 1;
+}

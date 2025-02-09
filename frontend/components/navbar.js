@@ -13,7 +13,6 @@ class Navbar extends HTMLElement {
         <nav>
           <a href="/">Home</a>
           <a href="/info">Info</a>
-          <a href="/calendar">Calendar</a>
           <a href="/contact">Contact</a>
         </nav>
       `;

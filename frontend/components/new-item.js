@@ -24,26 +24,45 @@ class NewItem extends HTMLElement {
                     <label for="date">Date:</label>
                     <input type="date" id="date" required>
 
+                    <label for="customer">Customer:</label>
+                    <input type="text" id="customer">
+
+                    <label for="quantity">Quantity:<label>
+                    <input type="number" id="quantity" required>
+
                     <button type="submit">Save</button>
                 </form>
-                <p id="message">Item Saved!</p>
             </div>
         `;
 
+      this.popup = document.querySelector('pop-up');
       const form = this.shadowRoot.getElementById('new-item-form');
       form.addEventListener('submit', (event) => this.handleSave(event));
     }
   }
   handleSave(event) {
     event.preventDefault();
-    const title = this.shadowRoot.getElementById('title').value;
-    const description = this.shadowRoot.getElementById('description').value;
-    const date = this.shadowRoot.getElementById('date').value;
-    const newItem = { title, description, date };
+    const titleInput = this.shadowRoot.getElementById('title');
+    const descriptionInput = this.shadowRoot.getElementById('description');
+    const dateInput = this.shadowRoot.getElementById('date');
+    const customerInput = this.shadowRoot.getElementById('customer');
+    const quantityInput = this.shadowRoot.getElementById('quantity');
+    const newItem = {
+      title: titleInput.value,
+      description: descriptionInput.value,
+      date: dateInput.value,
+      customer: customerInput.value,
+      quantity: parseInt(quantityInput.value, 10),
+    };
 
     saveNewItem(newItem)
       .then(() => {
-        this.shadowRoot.getElementById('message').style.display = 'block';
+        this.popup.showMessage('Item Saved!');
+        titleInput.value = '';
+        descriptionInput.value = '';
+        dateInput.value = '';
+        customerInput.value = '';
+        quantityInput.value = '';
       })
       .catch((error) => {
         console.error('Error saving item:', error);

@@ -1,4 +1,4 @@
-root = "."
+root = "./backend/main.go"
 testdata_dir = "testdata"
 tmp_dir = "tmp"
 
@@ -10,7 +10,7 @@ tmp_dir = "tmp"
   exclude_dir = ["assets", "tmp", "vendor", "testdata"]
   exclude_file = []
   exclude_regex = ["_test.go"]
-  exclude_unchanged = false
+  exclude_unchanged = true
   follow_symlink = false
   full_bin = ""
   include_dir = ["frontend", "backend"]
@@ -18,13 +18,13 @@ tmp_dir = "tmp"
   include_file = []
   kill_delay = "0s"
   log = "build-errors.log"
-  poll = false
-  poll_interval = 0
+  poll = true
+  poll_interval = 1000
   post_cmd = []
   pre_cmd = []
-  rerun = false
-  rerun_delay = 500
-  send_interrupt = false
+  rerun = true
+  rerun_delay = 2000
+  send_interrupt = true
   stop_on_error = false
 
 [color]

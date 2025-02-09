@@ -2,7 +2,6 @@ const routes = {
   '/': '/frontend/pages/home.html',
   '/info': '/frontend/pages/info.html',
   '/admin': '/frontend/pages/admin.html',
-  '/calendar': '/frontend/pages/calendar.html',
   '/contact': '/frontend/pages/contact.html',
 };
 
