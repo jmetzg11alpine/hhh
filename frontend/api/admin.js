@@ -39,3 +39,7 @@ export async function getItemsAdmin() {
     return [];
   }
 }
+
+export async function editItem(newItemDetails) {
+  console.log(newItemDetails);
+}

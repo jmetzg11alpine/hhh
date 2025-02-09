@@ -1,9 +1,10 @@
 import { getItems } from '/frontend/api/customer.js';
+import { setupShadowComponent } from '/frontend/api/config.js';
 
 class ListItems extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.container = setupShadowComponent(this, 'list-items.css');
   }
 
   async connectedCallback() {
@@ -13,24 +14,28 @@ class ListItems extends HTMLElement {
 
   render(data) {
     if (!data || data.length === 0) {
-      this.shadowRoot.innerHTML = `<p>No items available.</p>`;
+      this.container.innerHTML = `<p>No items available.</p>`;
       return;
     }
 
-    this.shadowRoot.innerHTML = `
-        <style>
-            @import url('/frontend/styles/components/list-items.css');
-        </style>
+    this.container.innerHTML = `
+        <div class="section-title">
+          <h2>Items Available</h2>
+        </div>
         <div class="item-container">
             ${data
               .map(
                 (item) => `
                 <div class="item">
-                    <h3>${item.title}</h3>
+                    <div class="row">
+                      <h3>${item.title}</h3>
+                       <p>${new Date(item.date).toDateString()}</p>
+                    </div>
                     <p>${item.description}</p>
-                    <p>Quantity: ${item.quantity}</p>
-                    <p><strong>Date:</strong> ${new Date(item.date).toDateString()}</p>
-                    <button>Claim</button>
+                    <div class="row">
+                      <p><strong>Remaing:</strong> ${item.remainingQ}</p>
+                      <button>Claim</button>
+                    </div>
                 </div>
             `
               )

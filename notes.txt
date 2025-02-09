@@ -4,6 +4,7 @@ sqlite3 database.db "SELECT * FROM items;"
 sqlite3 database.db
 .mode column
 .headers on
+.tables
 SELECT * FROM items;
 
 
@@ -14,6 +15,9 @@ end-to-end testing
 
 ----------------------- for development ---------------------
 air -c .air.toml
+
+lsof -i :8080
+kill -9 <PID>
 
 
 ----------------------- DOCKER -------------------------

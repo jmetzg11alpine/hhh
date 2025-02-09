@@ -3,8 +3,8 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
-	"hhh/database"
-	"hhh/models"
+	"hhh/backend/database"
+	"hhh/backend/models"
 	"log"
 	"net/http"
 )
@@ -24,18 +24,7 @@ func SaveItemHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	response := map[string]string{"message": "New item inserted successfully"}
-	jsonResponse(w, response)
-}
-
-func GetItemsHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("customer items called")
-	items, err := database.GetCustomerItems()
-	if err != nil {
-		http.Error(w, "Failed to get customer items", http.StatusInternalServerError)
-		log.Println("Database error in GetItemsHandler:", err)
-		return
-	}
-	jsonResponse(w, items)
+	JsonResponse(w, response)
 }
 
 func GetItemsAdminHandler(w http.ResponseWriter, r *http.Request) {
@@ -46,12 +35,5 @@ func GetItemsAdminHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("Database error in GetItemsAdminHandler:", err)
 		return
 	}
-	jsonResponse(w, items)
-
-}
-
-func jsonResponse(w http.ResponseWriter, data interface{}) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(data)
+	JsonResponse(w, items)
 }

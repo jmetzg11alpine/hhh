@@ -1,4 +1,4 @@
-import { getItemsAdmin } from '/frontend/api/admin.js';
+import { getItemsAdmin, editItem } from '/frontend/api/admin.js';
 
 class AdminList extends HTMLElement {
   constructor() {
@@ -8,7 +8,6 @@ class AdminList extends HTMLElement {
 
   async connectedCallback() {
     const data = await getItemsAdmin();
-    console.log(data);
     this.render(data);
   }
 
@@ -29,11 +28,11 @@ class AdminList extends HTMLElement {
                             <div class="item">
                                 <h3>${item.title}</h3>
                                 <p>${item.description}</p>
-                                <p>${item.customer}</p>
+                                <p>Quantity: ${item.quantity}</p>
                                 <p><strong>Date:</strong> ${new Date(
                                   item.date
                                 ).toDateString()}</p>
-                                <button>Remove</button>
+                                <button>Update</button>
                             </div>
                         `
                   )

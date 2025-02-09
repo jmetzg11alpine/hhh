@@ -1,7 +1,7 @@
 package config
 
 import (
-	"hhh/handlers"
+	"hhh/backend/handlers"
 	"net/http"
 )
 
@@ -33,6 +33,7 @@ func SetUpRoutes() *http.ServeMux {
 	mux.HandleFunc("/get_items_admin", enableCORS(handlers.GetItemsAdminHandler))
 	// customers
 	mux.HandleFunc("/get_items", enableCORS(handlers.GetItemsHandler))
+	mux.HandleFunc("/get_claimed_items", enableCORS(handlers.GetClaimedItemsHandler))
 
 	return mux
 }

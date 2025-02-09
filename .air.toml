@@ -1,4 +1,4 @@
-root = "./backend/main.go"
+root = "."
 testdata_dir = "testdata"
 tmp_dir = "tmp"
 

@@ -2,14 +2,20 @@ class Navbar extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
+
+    const link = document.createElement('link');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('href', '/frontend/styles/components/navbar.css');
+    this.container = document.createElement('div');
+
+    this.shadowRoot.appendChild(link);
+    this.shadowRoot.append(link, this.container);
   }
 
   connectedCallback() {
     if (this.shadowRoot) {
-      this.shadowRoot.innerHTML = `
-        <style>
-          @import url('/frontend/styles/components/navbar.css');
-        </style>
+      this.container.innerHTML = `
+
         <nav>
           <a href="/">Home</a>
           <a href="/info">Info</a>
