@@ -19,7 +19,7 @@ func InitDB() {
 	if err != nil {
 		log.Fatal("Error getting current working directory:", err)
 	}
-	dbPath := filepath.Join(baseDir, "backend/database/database.db")
+	dbPath := filepath.Join(baseDir, "database.db")
 
 	DB, err = sql.Open("sqlite3", dbPath)
 	if err != nil {
@@ -33,6 +33,7 @@ func InitDB() {
 		date TEXT NOT NULL,
 		original_quantity INTEGER NOT NULL,
 		remaining_quantity INTEGER NOT NULL,
+		is_active INTEGER NOT NULL DEFAULT 1,
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 	);
 	CREATE TABLE IF NOT EXISTS claimed_items (

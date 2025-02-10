@@ -4,7 +4,7 @@ import { setupShadowComponent } from '/frontend/api/config.js';
 class ListItems extends HTMLElement {
   constructor() {
     super();
-    this.container = setupShadowComponent(this, 'list-items.css');
+    this.container = setupShadowComponent(this, 'customer/list-items.css');
   }
 
   async connectedCallback() {
@@ -19,9 +19,6 @@ class ListItems extends HTMLElement {
     }
 
     this.container.innerHTML = `
-        <div class="section-title">
-          <h2>Items Available</h2>
-        </div>
         <div class="item-container">
             ${data
               .map(

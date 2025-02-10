@@ -1,0 +1,12 @@
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #333;
+}

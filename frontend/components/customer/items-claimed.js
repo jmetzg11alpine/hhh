@@ -4,7 +4,7 @@ import { setupShadowComponent, convertDateTime } from '/frontend/api/config.js';
 class ItemsClaimed extends HTMLElement {
   constructor() {
     super();
-    this.container = setupShadowComponent(this, 'list-items.css');
+    this.container = setupShadowComponent(this, 'customer/list-items.css');
   }
 
   async connectedCallback() {
@@ -14,9 +14,6 @@ class ItemsClaimed extends HTMLElement {
 
   render(data) {
     this.container.innerHTML = `
-    <div class="section-title">
-        <h2>Items Claimed</h2>
-    </div>
     <div class="item-container">
         ${data
           .map(

@@ -9,7 +9,6 @@ export async function saveNewItem(itemData) {
       },
       body: JSON.stringify(itemData),
     });
-    console.log(itemData);
     if (!response.ok) {
       throw new Error(`HTTP error saving new item! Status: ${response.status}`);
     }
@@ -26,13 +25,11 @@ export async function getItemsAdmin() {
         'Content-Type': 'application/json',
       },
     });
-    console.log(response);
     if (!response.ok) {
       throw new Error(`HTTP error getting items for admin: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error('error fetching items for customers', error);
@@ -40,6 +37,6 @@ export async function getItemsAdmin() {
   }
 }
 
-export async function editItem(newItemDetails) {
-  console.log(newItemDetails);
+export async function editItem(itemDetails) {
+  console.log(itemDetails);
 }

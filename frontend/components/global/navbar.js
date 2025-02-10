@@ -5,7 +5,7 @@ class Navbar extends HTMLElement {
 
     const link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
-    link.setAttribute('href', '/frontend/styles/components/navbar.css');
+    link.setAttribute('href', '/frontend/styles/components/global/navbar.css');
     this.container = document.createElement('div');
 
     this.shadowRoot.appendChild(link);

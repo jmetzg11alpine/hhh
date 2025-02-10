@@ -5,7 +5,7 @@ class Popup extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
         <style>
-            @import url('/frontend/styles/components/pop-up.css');
+            @import url('/frontend/styles/components/global/pop-up.css');
         </style>
         <div class="popup" id="popup"></div>
     `;

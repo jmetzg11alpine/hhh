@@ -10,7 +10,7 @@ import (
 )
 
 func SaveItemHandler(w http.ResponseWriter, r *http.Request) {
-	var newItem models.Item
+	var newItem models.NewItem
 	err := json.NewDecoder(r.Body).Decode(&newItem)
 	if err != nil {
 		http.Error(w, "Invalid request body", http.StatusBadRequest)

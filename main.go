@@ -32,11 +32,3 @@ func main() {
 	fmt.Println("Server running on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", mux))
 }
-
-// fs := http.FileServer(http.Dir(frontendPath))
-// mux.Handle("/frontend/", http.StripPrefix("/frontend/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-// 	w.Header().Set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate")
-// 	w.Header().Set("Pragma", "no-cache")
-// 	w.Header().Set("Expires", "0")
-// 	fs.ServeHTTP(w, r)
-// })))
