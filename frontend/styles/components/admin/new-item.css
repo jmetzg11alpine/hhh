@@ -6,6 +6,12 @@
   border: 1px solid #ddd;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   max-width: 800px;
+  width: 90%;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.15);
 }
 
 form {
@@ -84,6 +90,22 @@ textarea:focus {
 
 .form-row.button-row {
   justify-content: center;
+  width: 100%;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  width: 100%;
+}
+
+button:hover {
+  background: #0056b3;
 }
 
 @media (max-width: 480px) {

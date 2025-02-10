@@ -28,17 +28,13 @@ export function setupShadowComponent(component, cssPath) {
     component.attachShadow({ mode: 'open' });
   }
 
-  const link1 = document.createElement('link');
-  link1.setAttribute('rel', 'stylesheet');
-  link1.setAttribute('href', '/frontend/styles/components/' + cssPath);
-
-  const link2 = document.createElement('link');
-  link2.setAttribute('rel', 'stylesheet');
-  link2.setAttribute('href', '/frontend/styles/global.css');
+  const link = document.createElement('link');
+  link.setAttribute('rel', 'stylesheet');
+  link.setAttribute('href', '/frontend/styles/components/' + cssPath);
 
   const container = document.createElement('div');
 
-  component.shadowRoot.append(link1, link2, container);
+  component.shadowRoot.append(link, container);
   return container;
 }
 

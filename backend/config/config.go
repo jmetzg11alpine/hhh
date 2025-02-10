@@ -31,6 +31,7 @@ func SetUpRoutes() *http.ServeMux {
 	// admin
 	mux.HandleFunc("/save_item", enableCORS(handlers.SaveItemHandler))
 	mux.HandleFunc("/get_items_admin", enableCORS(handlers.GetItemsAdminHandler))
+	mux.HandleFunc("/edit_item", enableCORS(handlers.EditItemHandler))
 	// customers
 	mux.HandleFunc("/get_items", enableCORS(handlers.GetItemsHandler))
 	mux.HandleFunc("/get_claimed_items", enableCORS(handlers.GetClaimedItemsHandler))

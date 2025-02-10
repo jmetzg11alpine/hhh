@@ -37,3 +37,26 @@ func GetItemsAdminHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	JsonResponse(w, items)
 }
+
+func EditItemHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("edit items called")
+	var editItem models.EditItem
+	err := json.NewDecoder(r.Body).Decode(&editItem)
+	if err != nil {
+		http.Error(w, "Invalid reqest body", http.StatusBadRequest)
+		log.Println("error with json in edit items", err)
+	}
+
+	if err := database.EditItem(editItem); err != nil {
+		http.Error(w, "Failed to edit item in database", http.StatusInternalServerError)
+		log.Println("Database error in EditItemHandler:", err)
+	}
+
+	items, err := database.GetAdminItems()
+	if err != nil {
+		http.Error(w, "Failed to get admin items", http.StatusInternalServerError)
+		log.Println("Database error in GetItemsAdminHandler:", err)
+		return
+	}
+	JsonResponse(w, items)
+}

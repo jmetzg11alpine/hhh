@@ -14,7 +14,6 @@ class AdminList extends HTMLElement {
 
   async loadData() {
     const data = await getItemsAdmin();
-    console.log(data);
     this.render(data);
   }
 
@@ -42,7 +41,7 @@ class AdminList extends HTMLElement {
                               <textarea class="description">${item.description}</textarea>
 
                               <div class="quantity-and-date">
-                                <label>Quantity:</label>
+                                <label>Quantity NEED TO EDIT ORIGINAL TOO:</label>
                                 <p>${item.remainingQ} /
                                   <input
                                     type="number"
@@ -59,7 +58,11 @@ class AdminList extends HTMLElement {
                                 >
                               </div>
 
-                              <button class="update-btn">Update</button>
+                              <div class="button-row">
+                                <button class="update-btn">Update</button>
+                                <button class="claim-btn">Make Claim</button>
+                                <button class="remove-btn">Remove</button>
+                              </div>
                             </div>
                         `
                   )
@@ -69,9 +72,10 @@ class AdminList extends HTMLElement {
     this.container.querySelectorAll('.update-btn').forEach((button) => {
       button.addEventListener('click', (event) => this.handleUpdate(event));
     });
+    this.popup = document.querySelector('pop-up');
   }
 
-  async handleUpdate(event) {
+  handleUpdate(event) {
     const itemElement = event.target.closest('.item');
     const itemId = itemElement.getAttribute('data-id');
 
@@ -81,14 +85,15 @@ class AdminList extends HTMLElement {
     const updatedDate = itemElement.querySelector('.date').value;
 
     const updatedItem = {
-      id: itemId,
+      id: parseInt(itemId),
       title: updatedTitle,
       description: updatedDescription,
-      originalQ: updatedOriginalQ,
+      originalQ: parseInt(updatedOriginalQ),
       date: updatedDate,
     };
-
-    editItem(updatedItem);
+    editItem(updatedItem).then(() => {
+      this.popup.showMessage('Item Edited!');
+    });
   }
 }
 

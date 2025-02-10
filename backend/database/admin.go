@@ -1,6 +1,8 @@
 package database
 
-import "hhh/backend/models"
+import (
+	"hhh/backend/models"
+)
 
 func SaveItem(item models.NewItem) error {
 	insertSQL := `INSERT INTO items (title, description, date, original_quantity, remaining_quantity) VALUES (?, ?, ?, ?, ?)`
@@ -30,4 +32,14 @@ func GetAdminItems() ([]models.Item, error) {
 		items = append(items, item)
 	}
 	return items, nil
+}
+
+func EditItem(item models.EditItem) error {
+	query := `
+		UPDATE items
+		SET title = ?, description = ?, original_quantity = ?, date = ?
+		WHERE id = ?
+	`
+	_, err := DB.Exec(query, item.Title, item.Description, item.OriginalQ, item.Date, item.ID)
+	return err
 }
