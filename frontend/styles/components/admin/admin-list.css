@@ -16,13 +16,20 @@
   transition: transform 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
-.quantity-and-date {
+.form-group label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.quantity {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 4px;
 }
 
 .item input,
@@ -54,12 +61,6 @@
   align-items: center;
   font-size: 0.9rem;
   color: #333;
-}
-
-.item p input.quantity {
-  width: 60px;
-  margin-left: 8px;
-  text-align: center;
 }
 
 .item input[type='date'] {

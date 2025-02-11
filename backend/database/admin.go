@@ -34,12 +34,22 @@ func GetAdminItems() ([]models.Item, error) {
 	return items, nil
 }
 
-func EditItem(item models.EditItem) error {
+func EditItem(item models.Item) error {
 	query := `
 		UPDATE items
-		SET title = ?, description = ?, original_quantity = ?, date = ?
+		SET title = ?, description = ?, original_quantity = ?, remaining_quantity =?, date = ?
 		WHERE id = ?
 	`
-	_, err := DB.Exec(query, item.Title, item.Description, item.OriginalQ, item.Date, item.ID)
+	_, err := DB.Exec(query, item.Title, item.Description, item.OriginalQ, item.RemainingQ, item.Date, item.ID)
+	return err
+}
+
+func RemoveItem(item models.ItemId) error {
+	query := `
+		UPDATE items
+		SET is_active = 0
+		WHERE id = ?
+	`
+	_, err := DB.Exec(query, item.ID)
 	return err
 }

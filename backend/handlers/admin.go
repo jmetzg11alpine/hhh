@@ -40,7 +40,7 @@ func GetItemsAdminHandler(w http.ResponseWriter, r *http.Request) {
 
 func EditItemHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("edit items called")
-	var editItem models.EditItem
+	var editItem models.Item
 	err := json.NewDecoder(r.Body).Decode(&editItem)
 	if err != nil {
 		http.Error(w, "Invalid reqest body", http.StatusBadRequest)
@@ -52,11 +52,24 @@ func EditItemHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("Database error in EditItemHandler:", err)
 	}
 
-	items, err := database.GetAdminItems()
+	message := map[string]string{"message": "item edited"}
+	JsonResponse(w, message)
+}
+
+func RemoveItemHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("remove item called")
+	var removeID models.ItemId
+	err := json.NewDecoder(r.Body).Decode(&removeID)
 	if err != nil {
-		http.Error(w, "Failed to get admin items", http.StatusInternalServerError)
-		log.Println("Database error in GetItemsAdminHandler:", err)
-		return
+		http.Error(w, "Invalid request body", http.StatusBadRequest)
+		log.Println("error with json in Remove Item")
 	}
-	JsonResponse(w, items)
+
+	if err := database.RemoveItem(removeID); err != nil {
+		http.Error(w, "Failed to edit item in database", http.StatusInternalServerError)
+		log.Println("Database error in EditItemHandler:", err)
+	}
+
+	message := map[string]string{"message": "item removed"}
+	JsonResponse(w, message)
 }

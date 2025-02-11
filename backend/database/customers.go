@@ -7,7 +7,7 @@ func GetCustomerItems() ([]models.Item, error) {
 	SELECT
 		id, title, description, date, remaining_quantity
 		FROM items
-		WHERE remaining_quantity > 0
+		WHERE remaining_quantity > 0 AND is_active = 1
 		ORDER BY date;
 	`
 	rows, err := DB.Query(query)

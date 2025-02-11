@@ -16,14 +16,6 @@ type NewItem struct {
 	Quantity    int    `json:"quantity"`
 }
 
-type EditItem struct {
-	ID          int    `json:"id"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	OriginalQ   int    `json:"originalQ"`
-	Date        string `json:"date"`
-}
-
 type ClaimedItem struct {
 	ID          int    `json:"id"`
 	Title       string `json:"title"`
@@ -31,4 +23,8 @@ type ClaimedItem struct {
 	Customer    string `json:"customer"`
 	Quantity    int    `json:"quantity"`
 	DateTime    string `json:"dateTime"`
+}
+
+type ItemId struct {
+	ID int `json:"id"`
 }

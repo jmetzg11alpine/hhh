@@ -43,7 +43,12 @@ export function convertDateTime(dateTimeString) {
   return date.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' });
 }
 
-export function formateDateForInput(dateString) {
-  const date = new Date(dateString);
-  return date.toISOString().split('T')[0];
+export function formatDateForInput(dateString) {
+  try {
+    const date = new Date(dateString);
+    return date.toISOString().split('T')[0];
+  } catch {
+    const date = new Date();
+    return date.toISOString().split('T')[0];
+  }
 }
