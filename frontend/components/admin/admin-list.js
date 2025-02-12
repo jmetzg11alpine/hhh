@@ -1,4 +1,4 @@
-import { getItemsAdmin, editItem, removeItem } from '/frontend/api/admin.js';
+import { getItemsAdmin, editItem, removeItem, claimItem } from '/frontend/api/admin.js';
 import { setupShadowComponent, formatDateForInput } from '/frontend/api/config.js';
 
 class AdminList extends HTMLElement {
@@ -8,6 +8,7 @@ class AdminList extends HTMLElement {
   }
 
   async connectedCallback() {
+    this.modal = document.querySelector('admin-claim-modal');
     this.loadData();
     document.addEventListener('item-added', () => this.loadData());
   }
@@ -90,7 +91,13 @@ class AdminList extends HTMLElement {
     this.container.querySelectorAll('.remove-btn').forEach((button) => {
       button.addEventListener('click', (event) => this.handleRemove(event));
     });
+    this.container.querySelectorAll('.claim-btn').forEach((button) => {
+      button.addEventListener('click', (event) => this.handleClaim(event));
+    });
     this.popup = document.querySelector('pop-up');
+
+    console.log(this.modal);
+    console.log(typeof this.modal.show);
   }
 
   handleUpdate(event) {
@@ -119,10 +126,18 @@ class AdminList extends HTMLElement {
     const itemElement = event.target.closest('.item');
     const itemId = itemElement.getAttribute('data-id');
 
-    const updatedData = removeItem({ id: parseInt(itemId) }).then(() => {
+    removeItem({ id: parseInt(itemId) }).then(() => {
       this.popup.showMessage('Item Removed');
       this.loadData();
     });
+  }
+
+  handleClaim(event) {
+    console.log('handle claim called');
+    const itemElement = event.target.closest('.item');
+    const itemId = itemElement.getAttribute('data-id');
+
+    this.modal.show();
   }
 }
 

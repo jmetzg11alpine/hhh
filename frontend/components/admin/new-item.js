@@ -8,7 +8,7 @@ class NewItem extends HTMLElement {
   }
 
   connectedCallback() {
-    if (this.shadowRoot) {
+    if (this.container) {
       this.container.innerHTML = `
             <div class="card">
                 <form id="new-item-form">
@@ -43,6 +43,7 @@ class NewItem extends HTMLElement {
       form.addEventListener('submit', (event) => this.handleSave(event));
     }
   }
+
   handleSave(event) {
     event.preventDefault();
     const titleInput = this.container.querySelector('#title');

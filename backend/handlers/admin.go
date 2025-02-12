@@ -73,3 +73,12 @@ func RemoveItemHandler(w http.ResponseWriter, r *http.Request) {
 	message := map[string]string{"message": "item removed"}
 	JsonResponse(w, message)
 }
+
+func AdminClaim(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("admin claim item")
+	var claimedID models.ItemId
+	fmt.Printf("%v", claimedID)
+
+	message := map[string]string{"message": "item claimed"}
+	JsonResponse(w, message)
+}
