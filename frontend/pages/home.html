@@ -1,7 +1,35 @@
 <link rel="stylesheet" href="/frontend/styles/pages/home.css" />
 <div class="home-page">
   <section-title title="Items Available"></section-title>
-  <list-items></list-items>
+  <customer-list-items></customer-list-items>
   <section-title title="Items Claimed"></section-title>
-  <items-claimed></items-claimed>
+  <customer-items-claimed></customer-items-claimed>
 </div>
+
+<template id="customer-items-list-template">
+  <div class="item">
+    <div class="row">
+      <h3 class="title"></h3>
+      <p class="date"></p>
+    </div>
+    <p class="description"></p>
+    <div class="row">
+      <p class="remaining"></p>
+      <button>Claim</button>
+    </div>
+  </div>
+</template>
+
+<template id="customer-items-claimed-template">
+  <div class="item">
+    <div class="row">
+      <h3 class="title"></h3>
+      <p class="date"></p>
+    </div>
+    <p class="description"></p>
+    <div class="row">
+      <p class="customer">ss</p>
+      <p class="quantity"></p>
+    </div>
+  </div>
+</template>

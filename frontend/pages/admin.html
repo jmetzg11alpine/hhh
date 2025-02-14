@@ -1,11 +1,87 @@
 <link rel="stylesheet" href="/frontend/styles/pages/admin.css" />
-<script type="module" src="/frontend/components/new-item.js"></script>
 
 <div class="admin-page">
   <admin-claim-modal></admin-claim-modal>
   <section-title title="Add New Item"></section-title>
-  <new-item></new-item>
+  <admin-new-item></admin-new-item>
   <section-title title="Available Items"></section-title>
-  <admin-list></admin-list>
+  <admin-list-items></admin-list-items>
   <section-title title="Claimed Items"></section-title>
 </div>
+
+<template id="admin-claim-item-template">
+  <div class="overlay"></div>
+  <div class="modal">
+    <h2>Claim Item</h2>
+    <div>
+      <label>Customer: </label>
+      <input type="text" class="customer" required />
+    </div>
+    <div>
+      <label>Quantity: </label>
+      <div>
+        <input type="number" class="quantity" required />
+        <span class="remaining-quantity"></span>
+      </div>
+    </div>
+    <button class="close">Cancel</button>
+    <button class="claim">Claim</button>
+  </div>
+</template>
+
+<template id="admin-new-item-template"
+  ><div class="card">
+    <form id="new-item-form">
+      <div class="form-row">
+        <div class="form-group title">
+          <label for="title">Title:</label>
+          <input type="text" id="title" required />
+        </div>
+        <div class="form-group"></div>
+        <div class="form-group date">
+          <label for="date">Date:</label>
+          <input type="date" id="date" required />
+        </div>
+        <div class="form-group quantity">
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" required></textarea>
+      </div>
+      <div class="form-row button-row">
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+</template>
+
+<template id="admin-list-items-template">
+  <div class="item">
+    <div class="form-group">
+      <label>Title:</label>
+      <input type="text" class="input-title" />
+    </div>
+    <div class="form-group">
+      <label>Description:</label>
+      <textarea class="input-description"></textarea>
+    </div>
+    <div class="quantity">
+      <label>Remaining:</label>
+      <input type="number" class="input-quantityR" />
+      <label>Original:</label>
+      <input type="number" class="input-quantityO" />
+    </div>
+    <div class="date">
+      <label>Date:</label>
+      <input type="date" class="input-date" />
+    </div>
+    <div class="button-row">
+      <button class="update-btn">Update</button>
+      <button class="claim-btn">Make Claim</button>
+      <button class="remove-btn">Remove</button>
+    </div>
+  </div>
+</template>
